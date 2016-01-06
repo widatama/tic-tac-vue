@@ -2,9 +2,9 @@ var webpack = require("webpack");
 var baseConfig = require("./webpack.base.config");
 
 baseConfig.output = {
-  path:       "./public/asset/javascript",
-  publicPath: "public/asset/javascript",
-  filename:   "app.js"
+  path:       "./public/asset",
+  publicPath: "/public/asset",
+  filename:   "./javascript/app.js"
 };
 
 baseConfig.plugins = (baseConfig.plugins || []).concat([

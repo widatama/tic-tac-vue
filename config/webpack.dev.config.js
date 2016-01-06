@@ -1,9 +1,9 @@
 var baseConfig = require("./webpack.base.config");
 
 baseConfig.output = {
-  path:       "./asset/javascript",
-  publicPath: "asset/javascript",
-  filename:   "app.js"
+  path:       "./asset",
+  publicPath: "/asset",
+  filename:   "./javascript/app.js"
 };
 
 baseConfig.devtool = "eval-source-map";

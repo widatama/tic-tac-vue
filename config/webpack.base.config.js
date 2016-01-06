@@ -1,20 +1,25 @@
+var postcssImport =     require("postcss-import");
+var postcssNested =     require("postcss-nested");
+var postcssCssVar =     require("postcss-css-variables");
+var postcssAutoprefix = require("autoprefixer");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
-  // This is the "main" file which should include all other modules
   entry: "./app/javascript/main.js",
-  // Where should the compiled file go?
   module: {
     loaders: [
       {
-        test: /\.vue$/,
+        test:   /\.vue$/,
         loader: "vue"
       },
       {
-        // Ask webpack to check: If this file ends with .js, then apply some transforms
-        test: /\.js$/,
-        // Transform it with babel
-        loader: "babel",
-        // don"t transform node_modules folder (which don"t need to be compiled)
+        test:    /\.js$/,
+        loader:  "babel",
         exclude: /node_modules/
+      },
+      {
+        test:   /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
       }
     ]
   },
@@ -22,5 +27,18 @@ module.exports = {
     loaders: {
       js: "babel"
     }
-  }
+  },
+  postcss: [
+    postcssImport({
+      path: ["node_modules", "./app"]
+    }),
+    postcssNested(),
+    postcssCssVar(),
+    postcssAutoprefix({
+      browsers: ["last 2 versions"]
+    })
+  ],
+  plugins: [
+    new ExtractTextPlugin("./stylesheet/app.css")
+  ]
 };
