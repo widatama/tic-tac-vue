@@ -1,6 +1,6 @@
 var postcssImport =     require("postcss-import");
+var postcssNext =       require("postcss-cssnext");
 var postcssNested =     require("postcss-nested");
-var postcssCssVar =     require("postcss-css-variables");
 var postcssAutoprefix = require("autoprefixer");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -32,8 +32,8 @@ module.exports = {
     postcssImport({
       path: ["node_modules", "./app"]
     }),
+    postcssNext(),
     postcssNested(),
-    postcssCssVar(),
     postcssAutoprefix({
       browsers: ["last 2 versions"]
     })
