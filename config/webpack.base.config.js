@@ -18,6 +18,10 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test:   /\.(png|jpg)$/,
+        loader: "file-loader?name=/img/[name].[ext]"
+      },
+      {
         test:   /\.css$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
       }
