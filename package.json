@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "A Vue app",
   "scripts": {
-    "start": "npm run clean-dist && npm run template-watch & npm run webpack-dev",
-    "build": "npm run clean-dist && npm run template-build && npm run webpack-build",
-    "clean-dist": "rm -rf public",
-    "template-build": "jade app/templates --out public",
-    "template-watch": "fsmonitor -s -d app/templates/ '+*.jade' jade app/templates --out public",
+    "start": "npm run clean && npm run template-watch & npm run webpack-dev",
+    "build": "npm run clean && npm run template-compile && npm run webpack-build",
+    "clean": "node task/clean",
+    "template-compile": "node task/jade",
+    "template-watch": "node task/jade watch",
     "webpack-build": "webpack --progress --hide-modules --config ./config/webpack.prod.config.js",
     "webpack-dev": "webpack-dev-server --inline --hot --content-base public/ --config ./config/webpack.dev.config.js",
     "test": "karma start config/karma.conf.js"
