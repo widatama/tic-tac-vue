@@ -1,0 +1,40 @@
+import Vuex from "vuex";
+import Vue from "vue";
+
+import {getFirstTurn, generateCells} from "../helper/logic";
+
+Vue.use(Vuex);
+
+const state = {
+  gameTurn: getFirstTurn(),
+  cells: generateCells(9),
+  winner: ""
+};
+
+const mutations = {
+  UPDATE_CELLS(state, newCell) {
+    let newCells = state.cells;
+
+    newCells[newCell.pos - 1] = newCell;
+
+    Vue.set(state, "cells", newCells);
+  },
+  UPDATE_TURN(state) {
+    if(state.gameTurn === "x") {
+      Vue.set(state, "gameTurn", "o");
+    }
+    else if(state.gameTurn === "o") {
+      Vue.set(state, "gameTurn", "x");
+    }
+  },
+  UPDATE_WINNER(state, newWinner) {
+    Vue.set(state, "winner", newWinner);
+  }
+};
+
+let store = new Vuex.Store({
+  state,
+  mutations
+});
+
+export default store;

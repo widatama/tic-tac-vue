@@ -1,31 +1,23 @@
 <template lang="jade">
-div(class="cell cell--{{cell.value}}")
-  | {{cell.display}}
+div(class="cell cell--{{cell.value}}", @click="handleClick")
+  | {{cellDisplay()}}
 </template>
 
 <script>
+  import {playerMoves} from "../modules/store/actions";
+  import {displayXO} from "../modules/helper/display";
+
   export default {
-    props: {
-      "cell": {
-        coerce: (cell) => {
-          let display = "";
-          let returnCell = cell;
-
-          if (cell.value === "x") {
-            display = "✖";
-          }
-          else if (cell.value === "o") {
-            display = "●";
-          }
-          else {
-            display = cell.value
-          }
-
-          returnCell.display = display;
-
-          return returnCell;
-        }
+    props: ["cell"],
+    methods: {
+      cellDisplay: function() {
+        return displayXO(this.cell.value);
       }
     },
+    vuex: {
+      actions: {
+        handleClick: playerMoves
+      }
+    }
   }
 </script>
