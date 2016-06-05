@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "normalize-css": "^2.3.1",
-    "vue": "1.0"
+    "vue": "1.0",
+    "vuex": "^0.6.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",

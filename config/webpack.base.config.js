@@ -1,7 +1,6 @@
 var postcssImport =     require("postcss-import");
 var postcssNext =       require("postcss-cssnext");
 var postcssNested =     require("postcss-nested");
-var postcssAutoprefix = require("autoprefixer");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -27,6 +26,10 @@ module.exports = {
       }
     ]
   },
+  babel: {
+    "presets": ["es2015", "stage-0"],
+    "plugins": ["transform-runtime"]
+  },
   vue: {
     loaders: {
       js: "babel"
@@ -36,9 +39,8 @@ module.exports = {
     postcssImport({
       path: ["node_modules", "./app"]
     }),
-    postcssNext(),
     postcssNested(),
-    postcssAutoprefix({
+    postcssNext({
       browsers: ["last 2 versions"]
     })
   ],

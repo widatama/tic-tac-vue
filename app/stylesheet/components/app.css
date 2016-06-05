@@ -1,0 +1,20 @@
+.app-header {
+  padding: .75em 20px;
+  border-bottom: 2px solid var(--cl-border);
+}
+
+.app__title {
+  font-size: 1em;
+
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.app-body {
+  display: flex;
+
+  height: 90%;
+
+  justify-content: center;
+  align-items: center;
+}

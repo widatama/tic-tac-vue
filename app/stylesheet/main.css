@@ -1,15 +1,10 @@
 @import "normalize-css";
 
-/*CSS variable, nesting, and autoprefixer sample*/
+@import "./base/variables";
+@import "./base/animation";
+@import "./base/base";
+@import "./base/typography";
 
-:root {
-  --cl-body-text: #999999;
-}
-
-body {
-  display: flex;
-
-  h1 {
-    color: var(--cl-body-text);
-  }
-}
+@import "./components/app";
+@import "./components/board";
+@import "./components/cell";
