@@ -17,9 +17,15 @@ body {
 }
 
 body {
-  background: #FFFFFF;
+  background: var(--cl-bg-base);
 
-  color: #333333;
+  display: flex;
+  flex-direction: column;
+
+  color: var(--cl-text);
+
+  justify-content: flex-start;
+  align-items: center;
 }
 
 

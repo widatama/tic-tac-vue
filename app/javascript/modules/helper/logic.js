@@ -18,6 +18,10 @@ const checkWinCondition = function(winningPosition, cellValues) {
   }
 };
 
+const cellsFull = function(cells) {
+  return (cells.filter((cell) => {return cell.value === "";}).length === 0);
+};
+
 export const players = ["x", "o"];
 
 export const getWinner = function(cells) {
@@ -30,7 +34,12 @@ export const getWinner = function(cells) {
     }
   }
 
-  return "";
+  if(cellsFull(cells)) {
+    return "draw";
+  }
+  else {
+    return "";
+  }
 };
 
 export const getFirstTurn = function() {

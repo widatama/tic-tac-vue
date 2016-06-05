@@ -33,3 +33,7 @@ h6
 
     margin: 0;
 }
+
+.vue--green {
+  color: var(--cl-vue-green);
+}

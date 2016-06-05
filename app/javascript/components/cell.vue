@@ -1,5 +1,5 @@
 <template lang="jade">
-div(class="cell cell--{{cell.value}}", @click="handleClick")
+div.cell.vue--green(class="cell--{{cell.value}}", @click="handleClick")
   | {{cellDisplay()}}
 </template>
 

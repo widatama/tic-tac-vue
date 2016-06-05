@@ -15,6 +15,12 @@
 
   justify-content: center;
   align-items: center;
+
+  @media (--bp-small) {
+    font-size: 4.5em;
+
+    border-width: .5px;
+  }
 }
 
 .cell:nth-child(-n + 3) {
@@ -35,4 +41,8 @@
 
 .cell--x {
   font-size: 4.5em;
+
+  @media (--bp-small) {
+    font-size: 3em;
+  }
 }

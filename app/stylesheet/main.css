@@ -8,3 +8,4 @@
 @import "./components/app";
 @import "./components/board";
 @import "./components/cell";
+@import "./components/stat";

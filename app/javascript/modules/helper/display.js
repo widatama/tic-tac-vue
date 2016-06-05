@@ -12,10 +12,25 @@ export const displayXO = function(value) {
 };
 
 export const displayStat = function(state) {
-  if(state.winner) {
-    return displayXO(state.winner) + " wins";
+  if(state.winner && state.winner !== "draw") {
+    return {
+      player: displayXO(state.winner),
+      value: state.winner,
+      label: "wins"
+    };
+  }
+  else if(state.winner && state.winner === "draw") {
+    return {
+      player: displayXO(state.winner),
+      value: state.winner,
+      label: "Draw"
+    };
   }
   else {
-    return displayXO(state.gameTurn) + " turns";
+    return {
+      player: displayXO(state.gameTurn),
+      value: state.gameTurn,
+      label: "turns"
+    };
   }
 };

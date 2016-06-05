@@ -1,8 +1,9 @@
 <template lang="jade">
 header.app-header
-  h1.app__title
-    | Tic Tac Vue
-  Stat(:stat="stat")
+  .app-header-wrap
+    h1.app__title
+      | Tic Tac Vue
+    Stat(:stat="stat")
 section.app-body
   Board(:cells="cells")
 </template>

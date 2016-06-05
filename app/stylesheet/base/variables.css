@@ -1,14 +1,16 @@
 :root {
   --ft-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --cl-bg-header: #333;
-  --cl-border: #333;
-  --cl-border-inverse: #FFF;
+  --cl-bg-base: #fff;
+
+  --cl-border: #7f8c8d;
+
+  --cl-shadow: rgba(0, 0, 0, .25);
 
   --cl-text: #333;
-  --cl-text-inverse: #FFF;
+
+  --cl-vue-green: #42b983;
 }
 
-@custom-media --bp-large screen and (width >= 1200px);
-@custom-media --bp-medium screen and (width >= 700px) and (width <= 1199px);
-@custom-media --bp-small screen and (width <= 699px);
+@custom-media --bp-medium screen and (width >= 500px) and (width <= 600px);
+@custom-media --bp-small screen and (width <= 499px);
