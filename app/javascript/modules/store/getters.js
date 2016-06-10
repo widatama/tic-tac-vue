@@ -1,9 +1,9 @@
-import {displayStat} from "../helper/display";
+import {generateGameStat} from "../helper/display";
 
 export const getCells = function(state) {
   return state.cells;
 };
 
 export const getGameStat = function(state) {
-  return displayStat(state);
+  return generateGameStat(state);
 };

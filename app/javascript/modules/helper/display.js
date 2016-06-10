@@ -1,17 +1,19 @@
+import {players} from "../game/logic";
+
 export const displayXO = function(value) {
   let display = "";
 
-  if (value === "x") {
+  if (value === players[0]) {
     display = "✖";
   }
-  else if (value === "o") {
+  else if (value === players[1]) {
     display = "●";
   }
 
   return display;
 };
 
-export const displayStat = function(state) {
+export const generateGameStat = function(state) {
   if(state.winner && state.winner !== "draw") {
     return {
       player: displayXO(state.winner),

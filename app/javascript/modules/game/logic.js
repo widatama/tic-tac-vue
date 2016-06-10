@@ -49,6 +49,10 @@ export const getFirstTurn = function() {
 };
 
 export const generateCells = function(cellCount) {
+  if(typeof cellCount !== "number"){
+    throw new TypeError("generateCells() argument must be a number");
+  }
+
   let cells = [];
   let count = 0;
 

@@ -1,7 +1,7 @@
 import Vuex from "vuex";
 import Vue from "vue";
 
-import {getFirstTurn, generateCells} from "../helper/logic";
+import {getFirstTurn, generateCells, players} from "../game/logic";
 
 Vue.use(Vuex);
 
@@ -20,11 +20,11 @@ const mutations = {
     Vue.set(state, "cells", newCells);
   },
   UPDATE_TURN(state) {
-    if(state.gameTurn === "x") {
-      Vue.set(state, "gameTurn", "o");
+    if(state.gameTurn === players[0]) {
+      Vue.set(state, "gameTurn", players[1]);
     }
-    else if(state.gameTurn === "o") {
-      Vue.set(state, "gameTurn", "x");
+    else if(state.gameTurn === players[1]) {
+      Vue.set(state, "gameTurn", players[0]);
     }
   },
   UPDATE_WINNER(state, newWinner) {

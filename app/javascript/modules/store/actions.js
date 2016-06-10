@@ -1,4 +1,4 @@
-import {getWinner} from "../helper/logic";
+import {getWinner} from "../game/logic";
 
 export const playerMoves = function({dispatch, state}) {
   if(this.cell.value === "" && state.winner === "") {
