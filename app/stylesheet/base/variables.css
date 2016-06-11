@@ -2,14 +2,14 @@
   --ft-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --cl-bg-base: #fff;
+  --cl-bg-base-transp: rgba(255, 255, 255, .75);
 
   --cl-border: #7f8c8d;
-
-  --cl-shadow: rgba(0, 0, 0, .25);
 
   --cl-text: #333;
 
   --cl-vue-green: #42b983;
+  --cl-vue-blue: #2973b7;
 }
 
 @custom-media --bp-medium screen and (width >= 500px) and (width <= 600px);

@@ -4,8 +4,7 @@
   Base
 */
 
-body
-{
+body {
     font-family: var(--ft-sans-serif);
     font-size: 125%;
     font-size: 20px;
@@ -26,12 +25,16 @@ h2,
 h3,
 h4,
 h5,
-h6
-{
+h6 {
     font-family: var(--ft-sans-serif);
     font-weight: 400;
 
     margin: 0;
+}
+
+.nav__link {
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .vue--green {

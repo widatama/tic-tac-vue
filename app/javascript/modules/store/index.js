@@ -12,6 +12,11 @@ const state = {
 };
 
 const mutations = {
+  NEW_GAME(state) {
+    Vue.set(state, "cells", generateCells(9));
+    Vue.set(state, "gameTurn", getFirstTurn());
+    Vue.set(state, "winner", "");
+  },
   UPDATE_CELLS(state, newCell) {
     let newCells = state.cells;
 

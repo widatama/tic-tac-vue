@@ -34,15 +34,17 @@ body {
   Links
 */
 
-a,
-a:visited {
-  -webkit-transition: color .2s ease-in;
-  -moz-transition: color .2s ease-in;
-  -o-transition: color .2s ease-in;
-  transition: color  .2s ease-in;
+a {
+  transition: color .2s ease-in;
   text-decoration: none;
 
+  color: var(--cl-vue-blue);
   outline: 0;
+}
+
+a:hover,
+a:visited {
+  color: var(--cl-text);
 }
 
 
@@ -197,4 +199,21 @@ iframe {
 
 .one-third-width {
   width: 33.333%;
+}
+
+.nav-btn {
+  background: none;
+
+  padding: 0;
+
+  transition: color .2s ease-in;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: var(--cl-vue-blue);
+  border: 0;
+}
+
+.nav-btn:hover {
+  color: var(--cl-text);
 }

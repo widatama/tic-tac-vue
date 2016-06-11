@@ -1,5 +1,9 @@
 import {getWinner} from "../game/logic";
 
+export const newGame = function({dispatch}) {
+  dispatch("NEW_GAME");
+};
+
 export const playerMoves = function({dispatch, state}) {
   if(this.cell.value === "" && state.winner === "") {
     let newCell = this.cell;
