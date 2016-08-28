@@ -4,12 +4,12 @@
 
   @media (--bp-medium) {
     width: 100%;
-    height: 90%;
+    height: 100%;
   }
 
   @media (--bp-small) {
     width: 100%;
-    height: 90%;
+    height: 100%;
   }
 }
 
@@ -21,6 +21,7 @@
   left: 0;
 
   display: flex;
+  flex-direction: column;
 
   width: 100%;
   height: 600px;
@@ -29,10 +30,10 @@
   align-items: center;
 
   @media (--bp-medium) {
-    height: 90%;
+    height: 100%;
   }
 
   @media (--bp-small) {
-    height: 90%;
+    height: 100%;
   }
 }

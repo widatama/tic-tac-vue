@@ -1,5 +1,5 @@
 import tape from "tape";
-import {displayXO, generateGameStat} from "../../../app/javascript/modules/helper/display";
+import {displayXO, generateGameStat} from "../../../app/javascripts/modules/helper/display";
 
 tape("Display helper", function(tape) {
 

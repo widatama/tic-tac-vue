@@ -1,6 +1,6 @@
-<template lang="jade">
-div.cell.vue--green(class="cell--{{cell.value}}", @click="handleClick")
-  | {{cellDisplay()}}
+<template lang="pug">
+div.cell.vue--green( :class="cellValueClass", @click="handleClick")
+  | {{cellDisplay}}
 </template>
 
 <script>
@@ -9,8 +9,11 @@ div.cell.vue--green(class="cell--{{cell.value}}", @click="handleClick")
 
   export default {
     props: ["cell"],
-    methods: {
-      cellDisplay: function() {
+    computed: {
+      cellValueClass() {
+        return "cell--" + this.cell.value;
+      },
+      cellDisplay() {
         return displayXO(this.cell.value);
       }
     },

@@ -1,6 +1,6 @@
 import tape from "tape";
 
-import {players, getWinner, getFirstTurn, generateCells} from "../../../app/javascript/modules/game/logic";
+import {players, getWinner, getFirstTurn, generateCells} from "../../../app/javascripts/modules/game/logic";
 
 tape("Game logic", (tape) => {
 
@@ -19,8 +19,6 @@ tape("Game logic", (tape) => {
 
   tape.test("generateCells", (assert) => {
     assert.throws(generateCells, "Throws type error when argument is not a number");
-
-    //assert.throws(generateCells("a"), "Throws type error when argument is not a number");
 
     assert.equal(generateCells(1).length, 1, "Returns an array with the length specified by the argument");
 

@@ -1,16 +1,18 @@
-<template lang="jade">
-header.app-header
-  .app-header-wrap
-    h1.app__title
-      | Tic Tac&nbsp;
-      span.vue--green
-        | Vue
-    Stat(:stat="stat")
-section.app-body
-  .board-overlay(v-if="isEndOfGame")
-    button.nav-btn(href="#", @click="newGame")
-      | New Game
-  Board(:cells="cells")
+<template lang="pug">
+.app
+  header.app-header
+    .app-header-wrap
+      h1.app__title
+        | Tic Tac&nbsp;
+        span.vue--green
+          | Vue
+      Stat( :stat="stat", size="normal")
+  section.app-body
+    .board-overlay(v-if="isEndOfGame")
+      Stat( :stat="stat", size="large")
+      button.nav-btn( @click="newGame")
+        | New Game
+    Board( :cells="cells")
 </template>
 
 <script>
@@ -28,7 +30,7 @@ section.app-body
     computed: {
       isEndOfGame() {
         let statLabel = this.stat.label.toLowerCase();
-        return ["wins", "draw"].indexOf(statLabel) !== -1;
+        return ["wins", "draw"].includes(statLabel);
       }
     },
     vuex: {

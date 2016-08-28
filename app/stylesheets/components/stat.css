@@ -1,0 +1,34 @@
+.stat-display {
+  position: relative;
+
+  display: flex;
+
+  text-transform: uppercase;
+
+  align-items: center;
+}
+
+.stat-display--large {
+  font-size: 2.25em;
+
+  margin-bottom: 1em;
+
+  letter-spacing: 3px;
+}
+
+.stat-display__player {
+  line-height: .5;
+}
+
+.stat-display__player--o {
+  font-size: 2.25em;
+
+  margin-right: .05em;
+  margin-left: -.15em;
+}
+
+.stat-display__player--x {
+  font-size: 1.25em;
+
+  margin-right: .25em;
+}

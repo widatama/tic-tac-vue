@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 .board
   Cell(v-for="cell in cells", :cell="cell")
 </template>
