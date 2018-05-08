@@ -16,31 +16,31 @@
 </template>
 
 <script>
-  import {newGame} from "../modules/store/actions";
-  import {getCells, getGameStat} from "../modules/store/getters";
+  import { mapGetters } from 'vuex';
 
-  import stat from "./stat.vue";
-  import board from "./board.vue";
+  import Stat from './stat.vue';
+  import Board from './board.vue';
 
   export default {
+    name: 'App',
     components: {
-      "Stat":  stat,
-      "Board": board
+      Stat,
+      Board,
     },
     computed: {
       isEndOfGame() {
         let statLabel = this.stat.label.toLowerCase();
         return ["wins", "draw"].includes(statLabel);
-      }
-    },
-    vuex: {
-      actions: {
-        newGame: newGame
       },
-      getters: {
-        cells: getCells,
-        stat:  getGameStat
-      }
-    }
-  }
+      ...mapGetters({
+        cells: 'getCells',
+        stat: 'getGameStat',
+      }),
+    },
+    methods: {
+      newGame() {
+        this.$store.dispatch('newGame');
+      },
+    },
+  };
 </script>

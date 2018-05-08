@@ -10,7 +10,6 @@
   width: 100%;
 
   color: var(--cl-bg-base);
-  border-bottom: 1px solid var(--cl-border);
 
   justify-content: center;
 
@@ -43,8 +42,9 @@
 .app__title {
   font-size: 1em;
 
-  letter-spacing: 4px;
+  letter-spacing: .175em;
   text-transform: uppercase;
+  font-weight: var(--ft-weight-thin);
 }
 
 .app-body {
@@ -80,15 +80,23 @@
   padding: .5em .75em;
 
   transition: color .2s ease-in-out;
-  letter-spacing: 2px;
+  letter-spacing: .15em;
   text-transform: uppercase;
 
   color: var(--cl-bg-base);
   border: .1em solid var(--cl-vue-blue);
+  font-weight: var(--ft-weight-thin);
 }
 
 .nav-btn:hover {
   background: var(--cl-bg-base);
 
   color: var(--cl-vue-blue);
+
+  cursor: pointer;
+}
+
+.text-thin {
+  font-weight: var(--ft-weight-thin);
+  letter-spacing: .1em;
 }

@@ -32,3 +32,10 @@
 
   margin-right: .25em;
 }
+
+.stat-display__label {
+  font-weight: var(--ft-weight-thin);
+  letter-spacing: .15em;
+  font-size: .85em;
+}
+

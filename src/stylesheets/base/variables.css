@@ -1,8 +1,10 @@
 :root {
   --ft-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+  --ft-weight-thin: 200;
+
   --cl-bg-base: #fff;
-  --cl-bg-base-transp: rgba(255, 255, 255, .85);
+  --cl-bg-base-transp: rgba(255, 255, 255, .895);
 
   --cl-border: #555;
 
