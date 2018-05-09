@@ -4,6 +4,7 @@ const Webpack = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const postcssImport = require('postcss-import');
@@ -23,6 +24,33 @@ if (environment !== 'development') {
   htmlWebpackPluginConfig.excludeChunks = ['dev'];
   htmlWebpackPluginConfig.excludeAssets = [/dev/];
 }
+
+const WebappWebpackPluginConfig = {
+  logo: `./${appConfig.paths.asset.imagesPath}/favicon.png`,
+  cache: 'tmp/.wwp-cache',
+  favicons: {
+    appName: appConfig.title,
+    appDescription: 'A simple two player tic tac toe game',
+    background: '#fff',
+    theme_color: '#fff',
+    dir: 'auto',
+    lang: 'en-US',
+    display: 'standalone',
+    orientation: 'portrait',
+    icons: {
+      android: true,
+      appleIcon: true,
+      appleStartup: true,
+      coast: false,
+      favicons: true,
+      firefox: true,
+      opengraph: false,
+      twitter: false,
+      yandex: false,
+      windows: false,
+    },
+  },
+};
 
 module.exports = {
   context: path.resolve('', `./${appConfig.paths.src.path}`),
@@ -99,6 +127,7 @@ module.exports = {
     new MiniCSSExtractPlugin({ filename: `${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}` }),
     new HtmlWebpackPlugin(htmlWebpackPluginConfig),
     new HtmlWebpackExcludeAssetsPlugin(),
+    new WebappWebpackPlugin(WebappWebpackPluginConfig),
     new VueLoaderPlugin(),
   ],
 };
