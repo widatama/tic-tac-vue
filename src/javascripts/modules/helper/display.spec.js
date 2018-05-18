@@ -1,6 +1,6 @@
 import tape from 'tape';
 
-import { displayXO, generateGameStat } from '../../../src/javascripts/modules/helper/display';
+import { displayXO, generateGameStat } from './display';
 
 tape('Display helper', (tape) => {
 

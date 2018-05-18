@@ -8,7 +8,7 @@ const karmaWebpack = require('karma-webpack');
 const webpackConf = require('./webpack.config');
 
 delete webpackConf.entry;
-
+delete webpackConf.plugins;
 webpackConf.node = {
   fs: 'empty',
 };
@@ -23,17 +23,17 @@ module.exports = (config) => {
       karmaTapPrettyReporter,
       karmaWebpack,
     ],
-    browsers: ['ChromeCanary'],
+    browsers: ['Chrome'],
     frameworks: ['tap'],
     reporters: ['tap-pretty'],
     tapReporter: {
       prettifier: 'tap-summary',
     },
     files: [ // entry file for all tests
-      '../test/bundle.js',
+      '../src/javascripts/test_entry.js',
     ],
     preprocessors: { // pass the entry file to webpack for bundling
-      '../test/bundle.js': ['webpack'],
+      '../src/javascripts/test_entry.js': ['webpack'],
     },
     client: {
       captureConsole: false,

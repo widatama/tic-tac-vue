@@ -1,6 +1,6 @@
 import tape from 'tape';
 
-import { players, getWinner, getFirstTurn, generateCells } from '../../../src/javascripts/modules/game/logic';
+import { players, getWinner, getFirstTurn, generateCells } from './logic';
 
 tape('Game logic', (tape) => {
 
