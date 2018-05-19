@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "assets/apple-touch-icon.png"
   },
   {
-    "revision": "b4afd9a20072b095a263f9d9ca08ed7f",
+    "revision": "65520231ca00e137873828b00f7c39b7",
     "url": "index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "assets/apple-touch-icon-precomposed.png"
   },
   {
-    "url": "assets/stylesheets/app-1a633dd978e3e5571605.css"
+    "url": "assets/stylesheets/app-6522c85386af65faa708.css"
   },
   {
     "revision": "1f79d457c7c6c53336c3d3d99844f64d",
@@ -83,7 +83,7 @@ self.__precacheManifest = [
     "url": "assets/apple-touch-icon-180x180.png"
   },
   {
-    "url": "assets/javascripts/app-1a633dd978e3e5571605.js"
+    "url": "assets/javascripts/app-6522c85386af65faa708.js"
   },
   {
     "revision": "f05db38eef215b0cd32be896b10fd77d",
