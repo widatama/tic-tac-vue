@@ -15,3 +15,9 @@ global.app = new Vue({
   store,
   render: h => h(App),
 });
+
+if (process.env.NODE_ENV === 'production' && 'serviceWorker' in global.navigator) {
+  global.addEventListener('load', () => {
+    global.navigator.serviceWorker.register('sw.js');
+  });
+}

@@ -8,8 +8,6 @@ const webpackConfig = require('./webpack.config');
 const appConfig = require('./app.config');
 
 const WorkboxPluginConfig = {
-  // globDirectory: path.resolve('', `./${appConfig.paths.dist.path}`),
-  // globPatterns: ['**/*.{js,html,css}'],
   swDest: path.resolve('', `./${appConfig.paths.dist.path}/sw.js`),
   clientsClaim: true,
   skipWaiting: true,
