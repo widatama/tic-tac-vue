@@ -2,9 +2,9 @@ import tape from 'tape';
 
 import { displayXO, generateGameStat } from './display';
 
-tape('Display helper', (tape) => {
+tape('Display helper', unit => {
 
-  tape.test('displayXO', (assert) => {
+  unit.test('displayXO', assert => {
     assert.equal(displayXO('x'), '✖', 'Displays ✖ if x');
     assert.equal(displayXO('o'), '●', 'Displays ● if o');
     assert.equal(displayXO(''), '', 'Displays nothing');
@@ -12,7 +12,7 @@ tape('Display helper', (tape) => {
     assert.end();
   });
 
-  tape.test('generateGameStat', (assert) => {
+  unit.test('generateGameStat', assert => {
     const state1 = { winner: 'x' };
     const state2 = { winner: 'draw' };
     const state3 = { gameTurn: 'o' };
