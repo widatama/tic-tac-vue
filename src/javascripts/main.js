@@ -7,8 +7,8 @@ import store from './modules/store/index';
 import App from './components/app.vue';
 
 global.app = new Vue({
-  name: 'TicTacVue',
   el: '#vue',
+  name: 'TicTacVue',
   components: {
     App,
   },

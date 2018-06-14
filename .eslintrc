@@ -1,12 +1,18 @@
 {
-  "plugins": ["import"],
   "extends": [
     "airbnb-base",
     "prettier",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:vue/base",
+    "plugin:vue/essential",
+    "plugin:vue/strongly-recommended",
+    "plugin:vue/recommended"
   ],
-  "parser": "babel-eslint",
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
   "env": {
     "browser": true,
     "es6": true,
@@ -27,9 +33,15 @@
         "array": false
       }
     ],
+    "vue/max-attributes-per-line": [2, {
+      "singleline": 3,
+      "multiline": {
+        "max": 1,
+        "allowFirstLine": true
+      }
+    }]
   },
   "settings": {
-    "import/parser": "babel-eslint",
     "import/resolver": {
       "node": {
         "paths": ["src/"],
