@@ -1,11 +1,28 @@
-@import "normalize.css/normalize.css";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "./base/variables";
-@import "./base/base";
-@import "./base/typography";
+@layer base {
+  body {
+    font-size: 1.25em;
+  }
+}
 
-@import "./components/app";
-@import "./components/board";
-@import "./components/cell";
-@import "./components/stat";
+@screen lg {
+  .wrap {
+    max-width: 600px;
+    width: 40em;
+  }
+}
 
+@screen md {
+  .wrap {
+    width: 92%;
+  }
+}
+
+@screen sm {
+  .wrap {
+    width: 92%;
+  }
+}

@@ -1,8 +1,18 @@
-.DS_Store
-
+dist/
 node_modules/
-
-public/
 temp/
 tmp/
-*.log
+
+.DS_Store
+.env.local
+.env.*.local
+*.log*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
