@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 import vue from '@vitejs/plugin-vue';
 
 const rootDir = resolve(__dirname, 'src');
@@ -18,7 +19,43 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    VitePWA({
+      devOptions: { enabled: true },
+      injectRegister: 'inline',
+      registerType: 'autoUpdate',
+      manifest: {
+        name: 'Tic Tac Vue',
+        short_name: 'Tic Tac Vue',
+        background_color: '#333333',
+        theme_color: '#42b983',
+        icons: [
+          {
+            src: '/assets/favicon.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/assets/favicon.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: '/assets/favicon.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+          {
+            src: '/assets/favicon.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+    })],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
