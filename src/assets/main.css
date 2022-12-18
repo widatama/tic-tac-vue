@@ -2,6 +2,27 @@
 @tailwind component;
 @tailwind utilities;
 
-html {
-  color: #333;
+@layer base {
+  body {
+    font-size: 1.25em;
+  }
+}
+
+@screen lg {
+  .wrap {
+    max-width: 600px;
+    width: 40em;
+  }
+}
+
+@screen md {
+  .wrap {
+    width: 92%;
+  }
+}
+
+@screen sm {
+  .wrap {
+    width: 92%;
+  }
 }

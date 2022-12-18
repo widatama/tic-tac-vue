@@ -1,31 +1,32 @@
+<template lang="pug">
+header.flex.justify-between.wrap.py-5.mx-auto
+  h1.text-xl.uppercase.tracking-widest
+    | Tic Tac&nbsp;
+    span.text-green Vue
+  GameStatus.text-lg(:stat="stat")
+RouterView
+</template>
+
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { defineComponent, computed } from 'vue';
+import { RouterView } from 'vue-router';
 import { useStore } from 'vuex';
 
+import GameStatus from '@/components/GameStatus.vue';
+
 export default defineComponent({
+  name: 'App',
   components: {
-    RouterLink,
+    GameStatus,
     RouterView,
   },
   setup() {
-    const { state } = useStore();
+    const store = useStore();
+    const stat = computed(() => store.getters.getGameStat);
 
     return {
-      state,
+      stat,
     };
   },
 });
 </script>
-
-<template lang="pug">
-header
-  nav
-    RouterLink(to="/") Home
-    | &ensp;
-    RouterLink(to="/about") About
-
-br
-div {{ state.content }}
-RouterView
-</template>
