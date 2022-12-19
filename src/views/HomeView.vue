@@ -3,9 +3,9 @@ section.relative.flex.h-full
   .absolute.flex.justify-center.items-center.flex-col.w-full.h-full.bg-black.bg-opacity-70(
     v-if="isEndOfGame"
   )
-    GameStatus(:stat="stat", class="flex-grow-0 text-xl")
-    button.flex-grow-0.text-2xl.font-thin.mt-8.border-2.border-white.py-2.px-4.lowercase(
-      class="hover:bg-white hover:text-black transition duration-500"
+    GameStatus(:stat="stat", class="flex-grow-0 text-2xl")
+    button.flex-grow-0.text-2xl.mt-8.border-2.border-white.py-2.px-4.bg-white.text-black.lowercase(
+      class="hover:text-white hover:bg-black transition duration-500"
       @click="handleClick"
     )
       | New Game
