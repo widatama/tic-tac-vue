@@ -1,6 +1,6 @@
-# Vite + Typescript + Vue + Vuex + Tailwind
+# Tic Tac Vue
 
-Template for starting development in Vite with Typescript, Vue, Vuex, and Tailwind.
+Two player tic tac toe game implemented with vue js.
 
 ## Type Support for `.vue` Imports in TS
 
