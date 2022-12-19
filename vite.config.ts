@@ -6,8 +6,9 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import vue from '@vitejs/plugin-vue';
 
-const rootDir = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'dist');
+const rootDir = resolve(__dirname, 'src');
+const publicDir = resolve(__dirname, 'public');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,23 +34,23 @@ export default defineConfig({
         theme_color: '#42b983',
         icons: [
           {
-            src: '/assets/favicon.png',
+            src: '/favicon.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/assets/favicon.png',
+            src: '/favicon.png',
             sizes: '512x512',
             type: 'image/png',
           },
           {
-            src: '/assets/favicon.png',
+            src: '/favicon.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable',
           },
           {
-            src: '/assets/favicon.png',
+            src: '/favicon.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
@@ -57,6 +58,7 @@ export default defineConfig({
         ],
       },
     })],
+  publicDir,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
