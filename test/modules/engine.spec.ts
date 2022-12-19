@@ -1,41 +1,49 @@
-import tape from 'tape';
+import { describe, expect, test } from 'vitest';
 
 import {
-  players, getWinner, getFirstTurn, generateCells,
+  players, getFirstTurn, generateCells, getWinner,
 } from '@/modules/engine';
 
-tape('Game logic', (unit: tape.Test) => {
-  unit.test('players', (assert: tape.Test) => {
-    assert.equal(players.length, 2, 'Make sure there are only two players');
-    assert.deepEqual(players, ['x', 'o'], 'Returns a list of players');
-
-    assert.end();
+describe('Game players', () => {
+  test('There are only two players', () => {
+    expect(players.length).toBe(2);
   });
 
-  unit.test('getFirstTurn', (assert: tape.Test) => {
-    assert.ok(getFirstTurn(), 'Returns a player');
-
-    assert.end();
+  test('Player list is correct', () => {
+    expect(players).toEqual(['x', 'o']);
   });
+});
 
-  unit.test('generateCells', (assert: tape.Test) => {
-    assert.equal(generateCells(1).length, 1, 'Returns an array with the length specified by the argument');
-
-    assert.end();
+describe('First turn', () => {
+  test('Get player who has first turn', () => {
+    expect(getFirstTurn()).toBeTruthy();
   });
+});
 
-  unit.test('getWinner', (assert: tape.Test) => {
+describe('Generate board cells', () => {
+  test('Generates a cell array with length specified by the argument', () => {
+    expect(generateCells(1).length).toBe(1);
+  });
+});
+
+describe('Winner check', () => {
+  describe('No winner', () => {
     const emptyCells = generateCells(9);
+
+    test('Returns empty string if there is no winner', () => {
+      expect(getWinner(emptyCells)).toBe('');
+    });
+  });
+
+  describe('There is a winner', () => {
     const winningCells = generateCells(9);
 
     winningCells[0].value = 'o';
     winningCells[1].value = 'o';
     winningCells[2].value = 'o';
 
-    assert.equal(getWinner(emptyCells), '', 'Returns empty string if there is no winner');
-
-    assert.equal(getWinner(winningCells), 'o', 'Returns a winner based on the game rules');
-
-    assert.end();
+    test('Returns a winner based on game rules', () => {
+      expect(getWinner(winningCells)).toBe('o');
+    });
   });
 });

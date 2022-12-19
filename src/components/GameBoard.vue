@@ -10,10 +10,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import Cell from './cell.vue';
+import Cell from './BoardCell.vue';
 
 export default defineComponent({
-  name: 'Board',
+  name: 'GameBoard',
   components: {
     Cell,
   },

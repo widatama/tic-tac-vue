@@ -11,10 +11,10 @@ import { computed, defineComponent, toRefs } from 'vue';
 import { useStore } from 'vuex';
 
 import { displayXO } from '@/modules/display';
-import { Cell } from '@/modules/engine';
+import type { Cell } from '@/modules/engine';
 
 export default defineComponent({
-  name: 'Cell',
+  name: 'BoardCell',
   props: {
     cell: {
       type: Object as () => Cell,

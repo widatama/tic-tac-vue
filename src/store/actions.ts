@@ -1,10 +1,15 @@
-import { getWinner } from '@/modules/engine';
+import type { ActionContext } from 'vuex';
 
-const newGame = ({ commit }) => {
+import { getWinner } from '@/modules/engine';
+import type { State } from './index';
+
+type Context = ActionContext<State, unknown>;
+
+const newGame = ({ commit }: Context) => {
   commit('NEW_GAME');
 };
 
-const playerMoves = ({ commit, dispatch, state }, payload) => {
+const playerMoves = ({ commit, dispatch, state }: Context, payload: { cellPosition: number }) => {
   if (state.winner === '') {
     const newCell = {
       pos: payload.cellPosition,
@@ -18,7 +23,7 @@ const playerMoves = ({ commit, dispatch, state }, payload) => {
   }
 };
 
-const updateWinner = ({ commit, state }) => {
+const updateWinner = ({ commit, state }: Context) => {
   const winner = getWinner(state.cells);
 
   if (winner !== '') {
@@ -31,5 +36,7 @@ const actions = {
   playerMoves,
   updateWinner,
 };
+
+export type Actions = typeof actions;
 
 export default actions;

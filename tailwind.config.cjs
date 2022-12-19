@@ -1,6 +1,6 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // mode: 'jit',
-  purge: ['./public/*.html', './src/**/*.{vue,js,ts}'],
+  content: ['./src/**/*.{html,js,vue,ts}'],
   theme: {
     colors: {
       black: '#333333',

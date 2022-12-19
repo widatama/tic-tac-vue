@@ -2,7 +2,7 @@
 div.flex.items-center
   span.leading-3.mr-1(:class="playerClass")
     | {{stat.playerDisplay}}
-  span.font-thin
+  span
     | {{stat.label}}
 </template>
 
@@ -10,10 +10,10 @@ div.flex.items-center
 import { computed, defineComponent, toRefs } from 'vue';
 
 import { players } from '@/modules/engine';
-import { GameStat } from '@/modules/display';
+import type { GameStat } from '@/modules/display';
 
 export default defineComponent({
-  name: 'Stat',
+  name: 'GameStatus',
   props: {
     stat: {
       type: Object as () => GameStat,

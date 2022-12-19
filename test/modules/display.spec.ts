@@ -1,39 +1,49 @@
-import tape from 'tape';
+import { describe, expect, test } from 'vitest';
 
 import { displayXO, generateGameStat } from '@/modules/display';
 
-tape('Display helper', (unit: tape.Test) => {
-  unit.test('displayXO', (assert: tape.Test) => {
-    assert.equal(displayXO('x'), '✖', 'Displays ✖ if x');
-    assert.equal(displayXO('o'), '⸰', 'Displays ⸰ if o');
-    assert.equal(displayXO(''), '', 'Displays nothing');
-
-    assert.end();
+describe('Display player sign', () => {
+  test('Display nothing if player is not specified', () => {
+    expect(displayXO('')).toBe('');
   });
 
-  unit.test('generateGameStat', (assert: tape.Test) => {
-    const state1 = { winner: 'x' };
-    const state2 = { winner: 'draw' };
-    const state3 = { gameTurn: 'o' };
+  test('Display ✖ for player x', () => {
+    expect(displayXO('x')).toBe('✖');
+  });
 
-    assert.deepEqual(generateGameStat(state1), {
+  test('Display ⸰ for player o', () => {
+    expect(displayXO('o')).toBe('⸰');
+  });
+});
+
+describe('Generate game status', () => {
+  test('Returns winning player based on application state', () => {
+    const state = { winner: 'x', gameTurn: 'o' };
+
+    expect(generateGameStat(state)).toEqual({
       playerDisplay: '✖',
       player: 'x',
       label: 'wins',
-    }, 'Returns winning player based on application state');
+    });
+  });
 
-    assert.deepEqual(generateGameStat(state2), {
+  test('Returns draw based on application state', () => {
+    const state = { winner: 'draw', gameTurn: 'x' };
+
+    expect(generateGameStat(state)).toEqual({
       playerDisplay: '',
       player: 'draw',
       label: 'Draw',
-    }, 'Returns draw based on application state');
+    });
+  });
 
-    assert.deepEqual(generateGameStat(state3), {
+  test('Returns player turn based on application state', () => {
+    const state = { winner: '', gameTurn: 'o' };
+
+    expect(generateGameStat(state)).toEqual({
       playerDisplay: '⸰',
       player: 'o',
       label: 'turns',
-    }, 'Returns player turn based on application state');
-
-    assert.end();
+    });
   });
 });
