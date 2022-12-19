@@ -12,6 +12,7 @@ const publicDir = resolve(__dirname, 'public');
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/tic-tac-vue/',
   build: {
     emptyOutDir: true,
     outDir,
