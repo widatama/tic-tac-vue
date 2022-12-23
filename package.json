@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/widatama/tic-tac-vue.git"
+    "url": "git+https://github.com/widatama/tic-tac-vue.git"
   },
   "dependencies": {
     "vue": "^3.2.45",
