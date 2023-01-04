@@ -1,11 +1,11 @@
-import { players } from './engine';
+import { Player } from './engine';
 
-export function displayXO(player: string, inpPlayers = players): string {
+export function displayXO(playerKey: string, availablePlayer = Player): string {
   let display = '';
 
-  if (player === inpPlayers[0]) {
+  if (playerKey === availablePlayer.x) {
     display = '✖';
-  } else if (player === inpPlayers[1]) {
+  } else if (playerKey === availablePlayer.o) {
     display = '⸰';
   }
 

@@ -10,7 +10,14 @@ export type Cell2D = {
 
 export type BoardSize = 3 | 4 | 5;
 
-export type Player = 'o' | 'x';
+// export type Player = 'o' | 'x';
+
+export enum Player {
+  o = 'o',
+  x = 'x',
+}
+
+export type PlayerKey = keyof typeof Player;
 
 /*
  * tally = {
@@ -135,7 +142,7 @@ function board2DFull(board: Board2D): boolean {
   return result;
 }
 
-export const players: [Player, Player] = ['o', 'x'];
+export const players: [PlayerKey, PlayerKey] = ['o', 'x'];
 
 export function getWinner(
   cells: Cell[],

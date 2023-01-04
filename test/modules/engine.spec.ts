@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import {
-  players, getFirstTurn, generateCells, getWinner,
+  Player, players, getFirstTurn, generateCells, getWinner,
 } from '@/modules/engine';
 
 describe('Game players', () => {
@@ -10,7 +10,7 @@ describe('Game players', () => {
   });
 
   test('Player list is correct', () => {
-    expect(players).toEqual(['x', 'o']);
+    expect(players).toEqual([Player.o, Player.x]);
   });
 });
 

@@ -1,6 +1,6 @@
 <template lang="pug">
 div.flex.items-center
-  span.leading-3.mr-1(:class="playerClass")
+  span.leading-3.mr-1.font-bold(:class="playerClass")
     | {{stat.playerDisplay}}
   span
     | {{stat.label}}
@@ -9,7 +9,7 @@ div.flex.items-center
 <script lang="ts">
 import { computed, defineComponent, toRefs } from 'vue';
 
-import { players } from '@/modules/engine';
+import { Player } from '@/modules/engine';
 import type { GameStat } from '@/modules/display';
 
 export default defineComponent({
@@ -24,11 +24,9 @@ export default defineComponent({
     const { stat } = toRefs(props);
 
     const playerClass = computed(() => ({
-      'text-5xl': stat.value.player === players[1],
-      'font-bold': stat.value.player === players[1],
-      'text-green': stat.value.player === players[0],
-      'text-xl': stat.value.player === players[0],
-      'pt-1': stat.value.player === players[0],
+      'text-2xl': stat.value.player === Player.x,
+      'text-green': stat.value.player === Player.x,
+      'text-4xl': stat.value.player === Player.o,
     }));
 
     return {
