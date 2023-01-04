@@ -34,7 +34,7 @@ export type Tally = Record<Player, {
 
 export type Board2D = {
   cells: Cell2D[][];
-  players: [Player, Player];
+  players: [PlayerKey, PlayerKey];
   size: BoardSize;
 };
 
