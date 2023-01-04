@@ -27,9 +27,9 @@ export type PlayerKey = keyof typeof Player;
  */
 export type TallyItem = Record<number, number>;
 export type Tally = Record<Player, {
-  col?: TallyItem;
-  row?: TallyItem;
-  dia?: TallyItem;
+  col: TallyItem;
+  row: TallyItem;
+  dia: TallyItem;
 }>;
 
 export type Board2D = {
@@ -59,25 +59,20 @@ function checkWinCondition(winningPosition: PointTuple, cellValues: string[]): b
   return false;
 }
 
-function checkWinCondition2D(board: Board): Player | '' {
-  const tally: {} | Tally = {};
+function checkWinCondition2D(board: Board2D): PlayerKey | '' {
+  const tally: Tally = {
+    [Player.o]: { col: {}, dia: {}, row: {} },
+    [Player.x]: { col: {}, dia: {}, row: {} },
+  };
   let winner: Player | '' = '';
 
-  board.players.forEach((player) => {
-    tally[player] = {
-      col: {},
-      dia: {},
-      row: {},
-    };
-  });
-
-  for (let rowCount = 0; rowCount < boardSize; rowCount += 1) {
-    for (let colCount = 0; colCount < boardSize; colCount += 1) {
+  for (let rowCount = 0; rowCount < board.size; rowCount += 1) {
+    for (let colCount = 0; colCount < board.size; colCount += 1) {
       const cell = board.cells[rowCount][colCount];
 
       if (cell.value !== '') {
         // add row tally
-        if (tally[cell.value].row[rowCount] !== undefined) {
+        if (tally[cell.value].row && tally[cell.value].row[rowCount] !== undefined) {
           tally[cell.value].row[rowCount] += 1;
         } else {
           tally[cell.value].row[rowCount] = 1;
@@ -165,7 +160,7 @@ export function getWinner(
 
 export function getWinner2D(
   board: Board2D,
-): Player | '' | 'draw' {
+): PlayerKey | '' | 'draw' {
   if (board2DFull(board)) {
     return 'draw';
   }
