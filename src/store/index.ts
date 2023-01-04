@@ -1,13 +1,14 @@
 import { createStore } from 'vuex';
 
-import { getFirstTurn, generateCells } from '@/modules/engine';
+import { getFirstTurn, generateBoard2D, generateCells } from '@/modules/engine';
 import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-  gameTurn: getFirstTurn(),
+  board: generateBoard2D(),
   cells: generateCells(9),
+  gameTurn: getFirstTurn(),
   winner: '',
 };
 

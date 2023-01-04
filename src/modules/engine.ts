@@ -3,6 +3,34 @@ export type Cell = {
   value: string;
 };
 
+export type Cell2D = {
+  pos: [number, number];
+  value: Player | '';
+};
+
+export type BoardSize = 3 | 4 | 5;
+
+export type Player = 'o' | 'x';
+
+/*
+ * tally = {
+ *  o: { col: { 1: 1, 2: 1 }, row: {}, dia: {} },
+ *  x: { col: { 1: 1, 2: 1 }, row: { 0: 1 }, dia: {} },
+ * }
+ */
+export type TallyItem = Record<number, number>;
+export type Tally = Record<Player, {
+  col?: TallyItem;
+  row?: TallyItem;
+  dia?: TallyItem;
+}>;
+
+export type Board2D = {
+  cells: Cell2D[][];
+  players: [Player, Player];
+  size: BoardSize;
+};
+
 type PointTuple = [number, number, number];
 
 const winningCombo: PointTuple[] = [
@@ -24,11 +52,90 @@ function checkWinCondition(winningPosition: PointTuple, cellValues: string[]): b
   return false;
 }
 
+function checkWinCondition2D(board: Board): Player | '' {
+  const tally: {} | Tally = {};
+  let winner: Player | '' = '';
+
+  board.players.forEach((player) => {
+    tally[player] = {
+      col: {},
+      dia: {},
+      row: {},
+    };
+  });
+
+  for (let rowCount = 0; rowCount < boardSize; rowCount += 1) {
+    for (let colCount = 0; colCount < boardSize; colCount += 1) {
+      const cell = board.cells[rowCount][colCount];
+
+      if (cell.value !== '') {
+        // add row tally
+        if (tally[cell.value].row[rowCount] !== undefined) {
+          tally[cell.value].row[rowCount] += 1;
+        } else {
+          tally[cell.value].row[rowCount] = 1;
+        }
+
+        // add column tally
+        if (tally[cell.value].col[colCount] !== undefined) {
+          tally[cell.value].col[colCount] += 1;
+        } else {
+          tally[cell.value].col[colCount] = 1;
+        }
+
+        // add first diagonal tally
+        if (rowCount === colCount) {
+          if (tally[cell.value].dia[0] !== undefined) {
+            tally[cell.value].dia[0] += 1;
+          } else {
+            tally[cell.value].dia[0] = 1;
+          }
+        }
+
+        // add second diagonal tally
+        if (rowCount + colCount === board.size - 1) {
+          if (tally[cell.value].dia[1] !== undefined) {
+            tally[cell.value].dia[1] += 1;
+          } else {
+            tally[cell.value].dia[1] = 1;
+          }
+        }
+
+        const colWin = tally[cell.value].col[colCount] === board.size;
+        const dia0Win = tally[cell.value].dia[0] === board.size;
+        const dia1Win = tally[cell.value].dia[1] === board.size;
+        const rowWin = tally[cell.value].row[rowCount] === board.size;
+
+        if (colWin || dia0Win || dia1Win || rowWin) {
+          winner = cell.value;
+          break;
+        }
+      }
+    }
+  }
+
+  return winner;
+}
+
 function cellsFull(cells: Cell[]): boolean {
   return (cells.findIndex((cell) => cell.value === '') === -1);
 }
 
-export const players: [string, string] = ['x', 'o'];
+function board2DFull(board: Board2D): boolean {
+  let result = true;
+
+  board.cells.forEach((row) => {
+    row.forEach((cell) => {
+      if (cell.value === '') {
+        result = false;
+      }
+    });
+  });
+
+  return result;
+}
+
+export const players: [Player, Player] = ['o', 'x'];
 
 export function getWinner(
   cells: Cell[],
@@ -49,6 +156,16 @@ export function getWinner(
   return '';
 }
 
+export function getWinner2D(
+  board: Board2D,
+): Player | '' | 'draw' {
+  if (board2DFull(board)) {
+    return 'draw';
+  }
+
+  return checkWinCondition2D(board);
+}
+
 export function getFirstTurn(inpPlayers: [string, string] = players): string {
   const rand = Math.random() * 10;
 
@@ -66,4 +183,26 @@ export function generateCells(cellCount: number): Cell[] {
   }
 
   return cells;
+}
+
+export const boardSizes: BoardSize[] = [3, 4, 5];
+
+export function generateBoard2D(boardSize: BoardSize = 3, inpPlayers = players): Board2D {
+  const cells: Cell2D[][] = [];
+
+  for (let rowCount = 0; rowCount < boardSize; rowCount += 1) {
+    cells[rowCount] = [];
+    for (let colCount = 0; colCount < boardSize; colCount += 1) {
+      cells[rowCount][colCount] = {
+        pos: [rowCount, colCount],
+        value: '',
+      };
+    }
+  }
+
+  return {
+    cells,
+    players: inpPlayers,
+    size: boardSize,
+  };
 }
