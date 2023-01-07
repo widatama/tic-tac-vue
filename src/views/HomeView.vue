@@ -10,14 +10,14 @@ section.relative.flex.h-full
     )
       | New Game
   div.wrap.mx-auto.flex.justify-center.items-center.pb-5.pt-1.h-full
-    GameBoard(:cells="cells")
+    GameBoard(:board="board")
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 
-import GameBoard from '@/components/GameBoard.vue';
+import GameBoard from '@/components/GameBoard2D.vue';
 import GameStatus from '@/components/GameStatus.vue';
 
 export default defineComponent({
@@ -39,6 +39,7 @@ export default defineComponent({
     };
 
     return {
+      board: computed(() => store.getters.getBoard),
       cells: computed(() => store.getters.getCells),
       stat,
       isEndOfGame,

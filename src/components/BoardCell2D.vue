@@ -11,11 +11,18 @@ import { computed, defineComponent, toRefs } from 'vue';
 import { useStore } from 'vuex';
 
 import { displayXO } from '@/modules/display';
+import { Player } from '@/modules/engine';
 import type { Cell2D } from '@/modules/engine';
 
 export default defineComponent({
   name: 'BoardCell',
   props: {
+    borderClasses: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
     cell: {
       type: Object as () => Cell2D,
       required: true,
@@ -23,25 +30,26 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const { cell } = toRefs(props);
+    const { borderClasses, cell } = toRefs(props);
 
     const cellClass = computed(() => {
       if (cell.value.value) {
         return {
-          'text-7xl': cell.value.value === 'x',
-          'text-11xl': cell.value.value === 'o',
-          'font-bold': cell.value.value === 'o',
-          'text-white': cell.value.value === 'o',
-          'text-green': cell.value.value === 'x',
+          ...borderClasses.value,
+          'text-11xl': cell.value.value === Player.o,
+          'font-bold': cell.value.value === Player.o,
+          'text-white': cell.value.value === Player.o,
+          'text-7xl': cell.value.value === Player.x,
+          'text-green': cell.value.value === Player.x,
         };
       }
 
-      return {};
+      return borderClasses.value;
     });
 
     const handleClick = () => {
       if (cell.value.value === '') {
-        store.dispatch('playerMoves', { cellPosition: cell.value.pos });
+        store.dispatch('playerMoves2D', { cellPosition: cell.value.pos });
       }
     };
 

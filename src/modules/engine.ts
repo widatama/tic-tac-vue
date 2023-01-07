@@ -161,11 +161,13 @@ export function getWinner(
 export function getWinner2D(
   board: Board2D,
 ): PlayerKey | '' | 'draw' {
-  if (board2DFull(board)) {
+  const winner = checkWinCondition2D(board);
+
+  if (winner === '' && board2DFull(board)) {
     return 'draw';
   }
 
-  return checkWinCondition2D(board);
+  return winner;
 }
 
 export function getFirstTurn(inpPlayers: [string, string] = players): string {
