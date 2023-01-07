@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRefs } from 'vue';
+import { computed, defineComponent, toRefs } from 'vue';
 
 import { generateBoard2D } from '@/modules/engine';
 import type { Board2D } from '@/modules/engine';
@@ -33,8 +33,8 @@ export default defineComponent({
   },
   setup(props) {
     const { board } = toRefs(props);
-    const gridColClass = ref(`grid-cols-${board.value.size}`);
-    const gridRowClass = ref(`grid-rows-${board.value.size}`);
+    const gridColClass = computed(() => `grid-cols-${board.value.size}`);
+    const gridRowClass = computed(() => `grid-rows-${board.value.size}`);
 
     function cellBorderClasses(cellPos: [number, number]) {
       const { size } = board.value;
