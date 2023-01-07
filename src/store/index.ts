@@ -1,17 +1,17 @@
 import { createStore } from 'vuex';
 
-import { getFirstTurn, generateBoard2D } from '@/modules/engine';
+import type { Board2D } from '@/modules/engine';
 import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
 
-const state = {
-  board: generateBoard2D(),
-  playerTurn: getFirstTurn(),
-  winner: '',
+type State = {
+  board?: Board2D,
+  playerTurn?: string,
+  winner?: string,
 };
 
-export type State = typeof state;
+const state: State = {};
 
 export default createStore({
   state,

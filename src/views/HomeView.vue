@@ -14,7 +14,7 @@ section.relative.flex.h-full
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent, onMounted } from 'vue';
 import { useStore } from 'vuex';
 
 import GameBoard from '@/components/GameBoard2D.vue';
@@ -37,6 +37,10 @@ export default defineComponent({
     const handleClick = () => {
       store.dispatch('newGame');
     };
+
+    onMounted(() => {
+      store.dispatch('newGame');
+    });
 
     return {
       board: computed(() => store.getters.getBoard),
