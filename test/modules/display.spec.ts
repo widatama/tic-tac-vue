@@ -18,7 +18,7 @@ describe('Display player sign', () => {
 
 describe('Generate game status', () => {
   test('Returns winning player based on application state', () => {
-    const state = { winner: 'x', gameTurn: 'o' };
+    const state = { winner: 'x', playerTurn: 'o' };
 
     expect(generateGameStat(state)).toEqual({
       playerDisplay: '✖',
@@ -28,7 +28,7 @@ describe('Generate game status', () => {
   });
 
   test('Returns draw based on application state', () => {
-    const state = { winner: 'draw', gameTurn: 'x' };
+    const state = { winner: 'draw', playerTurn: 'x' };
 
     expect(generateGameStat(state)).toEqual({
       playerDisplay: '',
@@ -38,7 +38,7 @@ describe('Generate game status', () => {
   });
 
   test('Returns player turn based on application state', () => {
-    const state = { winner: '', gameTurn: 'o' };
+    const state = { winner: '', playerTurn: 'o' };
 
     expect(generateGameStat(state)).toEqual({
       playerDisplay: '⸰',

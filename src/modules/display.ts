@@ -19,25 +19,18 @@ export type GameStat = {
 };
 
 export function generateGameStat(
-  { winner, gameTurn }: { winner: string, gameTurn: string },
+  { winner, playerTurn }: { winner: string, playerTurn: string },
 ): GameStat {
-  if (winner && winner !== 'draw') {
-    return {
-      playerDisplay: displayXO(winner),
-      player: winner,
-      label: 'wins',
-    };
-  } if (winner && winner === 'draw') {
-    return {
-      playerDisplay: displayXO(winner),
-      player: winner,
-      label: 'Draw',
-    };
+  let label = 'turns';
+  if (winner === 'draw') {
+    label = 'Draw';
+  } else if (winner !== '') {
+    label = 'wins';
   }
 
   return {
-    playerDisplay: displayXO(gameTurn),
-    player: gameTurn,
-    label: 'turns',
+    label,
+    player: winner !== '' ? winner : playerTurn,
+    playerDisplay: winner === '' ? displayXO(playerTurn) : displayXO(winner),
   };
 }

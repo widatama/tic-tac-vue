@@ -1,23 +1,18 @@
-export type Cell = {
-  pos: number;
-  value: string;
-};
-
 export type Cell2D = {
   pos: [number, number];
   value: Player | '';
 };
 
 export type BoardSize = 3 | 4 | 5;
-
-// export type Player = 'o' | 'x';
+export const boardSizes: BoardSize[] = [3, 4, 5];
+const DEFAULT_BOARD_SIZE: BoardSize = 3;
 
 export enum Player {
   o = 'o',
   x = 'x',
 }
-
 export type PlayerKey = keyof typeof Player;
+export const players: [PlayerKey, PlayerKey] = [Player.o, Player.x];
 
 /*
  * tally = {
@@ -25,8 +20,8 @@ export type PlayerKey = keyof typeof Player;
  *  x: { col: { 1: 1, 2: 1 }, row: { 0: 1 }, dia: {} },
  * }
  */
-export type TallyItem = Record<number, number>;
-export type Tally = Record<Player, {
+type TallyItem = Record<number, number>;
+type Tally = Record<Player, {
   col: TallyItem;
   row: TallyItem;
   dia: TallyItem;
@@ -37,27 +32,6 @@ export type Board2D = {
   players: [PlayerKey, PlayerKey];
   size: BoardSize;
 };
-
-type PointTuple = [number, number, number];
-
-const winningCombo: PointTuple[] = [
-  [0, 1, 2],
-  [0, 3, 6],
-  [0, 4, 8],
-  [1, 4, 7],
-  [2, 5, 8],
-  [2, 4, 6],
-  [3, 4, 5],
-  [6, 7, 8],
-];
-
-function checkWinCondition(winningPosition: PointTuple, cellValues: string[]): boolean {
-  if (cellValues[winningPosition[0]] !== '' && cellValues[winningPosition[0]] === cellValues[winningPosition[1]] && cellValues[winningPosition[1]] === cellValues[winningPosition[2]]) {
-    return true;
-  }
-
-  return false;
-}
 
 function checkWinCondition2D(board: Board2D): PlayerKey | '' {
   const tally: Tally = {
@@ -119,10 +93,6 @@ function checkWinCondition2D(board: Board2D): PlayerKey | '' {
   return winner;
 }
 
-function cellsFull(cells: Cell[]): boolean {
-  return (cells.findIndex((cell) => cell.value === '') === -1);
-}
-
 function board2DFull(board: Board2D): boolean {
   let result = true;
 
@@ -135,27 +105,6 @@ function board2DFull(board: Board2D): boolean {
   });
 
   return result;
-}
-
-export const players: [PlayerKey, PlayerKey] = ['o', 'x'];
-
-export function getWinner(
-  cells: Cell[],
-  inpWinningConditions: PointTuple[] = winningCombo,
-): string {
-  const cellValues = cells.map((cell) => cell.value);
-
-  for (let count = 0; count < inpWinningConditions.length; count += 1) {
-    if (checkWinCondition(inpWinningConditions[count], cellValues)) {
-      return cellValues[inpWinningConditions[count][0]];
-    }
-  }
-
-  if (cellsFull(cells)) {
-    return 'draw';
-  }
-
-  return '';
 }
 
 export function getWinner2D(
@@ -176,23 +125,12 @@ export function getFirstTurn(inpPlayers: [string, string] = players): string {
   return inpPlayers[Math.round(rand) % 2];
 }
 
-export function generateCells(cellCount: number): Cell[] {
-  const cells: Cell[] = [];
-
-  for (let count = 0; count < cellCount; count += 1) {
-    cells[count] = {
-      pos: count + 1,
-      value: '',
-    };
-  }
-
-  return cells;
-}
-
-export const boardSizes: BoardSize[] = [3, 4, 5];
-
-export function generateBoard2D(boardSize: BoardSize = 3, inpPlayers = players): Board2D {
+export function generateBoard2D(
+  inpBoardSize: BoardSize = DEFAULT_BOARD_SIZE,
+  inpPlayers: [PlayerKey, PlayerKey] = players,
+): Board2D {
   const cells: Cell2D[][] = [];
+  const boardSize = boardSizes.includes(inpBoardSize) ? inpBoardSize : DEFAULT_BOARD_SIZE;
 
   for (let rowCount = 0; rowCount < boardSize; rowCount += 1) {
     cells[rowCount] = [];
