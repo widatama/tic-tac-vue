@@ -1,16 +1,23 @@
 import { generateGameStat } from '@/modules/display';
+import { Phase } from '@/modules/engine';
 import type { State } from './index';
 
-const getCells = (state: State) => state.cells;
+const getBoard = (state: State) => state.board;
+
+const getBoardSizes = (state: State) => state.boardSizes;
 
 const getGameStat = (state: State) => generateGameStat({
   winner: state.winner,
-  gameTurn: state.gameTurn,
+  playerTurn: state.playerTurn,
 });
 
+const isPrep = (state: State) => state.phase === Phase.prep;
+
 const getters = {
-  getCells,
+  getBoard,
+  getBoardSizes,
   getGameStat,
+  isPrep,
 };
 
 export type Getters = typeof getters;

@@ -11,46 +11,45 @@ import { computed, defineComponent, toRefs } from 'vue';
 import { useStore } from 'vuex';
 
 import { displayXO } from '@/modules/display';
-import type { Cell } from '@/modules/engine';
+import { Player } from '@/modules/engine';
+import type { Cell2D } from '@/modules/engine';
 
 export default defineComponent({
   name: 'BoardCell',
   props: {
+    borderClasses: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
     cell: {
-      type: Object as () => Cell,
+      type: Object as () => Cell2D,
       required: true,
     },
   },
   setup(props) {
     const store = useStore();
-    const { cell } = toRefs(props);
+    const { borderClasses, cell } = toRefs(props);
 
     const cellClass = computed(() => {
-      const borders = {
-        border: cell.value.pos === 5,
-        'border-l': [2, 8].includes(cell.value.pos),
-        'border-r': [2, 8].includes(cell.value.pos),
-        'border-t': [4, 6].includes(cell.value.pos),
-        'border-b': [4, 6].includes(cell.value.pos),
-      };
-
       if (cell.value.value) {
         return {
-          'text-7xl': cell.value.value === 'x',
-          'text-11xl': cell.value.value === 'o',
-          'font-bold': cell.value.value === 'o',
-          'text-white': cell.value.value === 'o',
-          'text-green': cell.value.value === 'x',
-          ...borders,
+          ...borderClasses.value,
+          'text-11xl': cell.value.value === Player.o,
+          'font-bold': cell.value.value === Player.o,
+          'text-white': cell.value.value === Player.o,
+          'text-7xl': cell.value.value === Player.x,
+          'text-green': cell.value.value === Player.x,
         };
       }
 
-      return borders;
+      return borderClasses.value;
     });
 
     const handleClick = () => {
       if (cell.value.value === '') {
-        store.dispatch('playerMoves', { cellPosition: cell.value.pos });
+        store.dispatch('playerMoves2D', { cellPosition: cell.value.pos });
       }
     };
 
