@@ -1,9 +1,10 @@
 <template lang="pug">
 div.flex.items-center
-  span.leading-3.mr-1.font-bold(:class="playerClass")
-    | {{stat.playerDisplay}}
-  span
-    | {{stat.label}}
+  template(v-if="stat.player")
+    span.leading-3.mr-1.font-bold(:class="playerClass")
+      | {{stat.playerDisplay}}
+    span
+      | {{stat.label}}
 </template>
 
 <script lang="ts">

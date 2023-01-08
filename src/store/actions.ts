@@ -1,12 +1,14 @@
 import type { ActionContext } from 'vuex';
 
-import { getWinner2D } from '@/modules/engine';
+import { getWinner2D, Phase } from '@/modules/engine';
+import type { Board2D } from '@/modules/engine';
 import type { State } from './index';
 
 type Context = ActionContext<State, unknown>;
 
-const newGame = ({ commit }: Context) => {
-  commit('NEW_GAME');
+const newGame = ({ commit }: Context, inpBoardSize: number) => {
+  commit('NEW_GAME', inpBoardSize);
+  commit('UPDATE_PHASE', Phase.play);
 };
 
 const playerMoves2D = (
@@ -27,10 +29,11 @@ const playerMoves2D = (
 };
 
 const updateWinner2D = ({ commit, state }: Context) => {
-  const winner = getWinner2D(state.board);
+  const winner = getWinner2D(state.board as Board2D);
 
   if (winner !== '') {
     commit('UPDATE_WINNER', winner);
+    commit('UPDATE_PHASE', Phase.prep);
   }
 };
 

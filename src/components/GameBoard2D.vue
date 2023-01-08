@@ -14,7 +14,6 @@
 <script lang="ts">
 import { computed, defineComponent, toRefs } from 'vue';
 
-import { generateBoard2D } from '@/modules/engine';
 import type { Board2D } from '@/modules/engine';
 import BoardCell from './BoardCell2D.vue';
 
@@ -25,19 +24,27 @@ export default defineComponent({
   },
   props: {
     board: {
-      type: Object as () => Board2D,
+      type: Object as () => Board2D | {},
       default() {
-        return generateBoard2D();
+        return {};
       },
     },
   },
   setup(props) {
     const { board } = toRefs(props);
-    const gridColClass = computed(() => `grid-cols-${board.value.size}`);
-    const gridRowClass = computed(() => `grid-rows-${board.value.size}`);
+
+    const gridColClass = computed(() => {
+      const { size } = board.value as Board2D;
+      return `grid-cols-${size}`;
+    });
+
+    const gridRowClass = computed(() => {
+      const { size } = board.value as Board2D;
+      return `grid-rows-${size}`;
+    });
 
     function cellBorderClasses(cellPos: [number, number]) {
-      const { size } = board.value;
+      const { size } = board.value as Board2D;
 
       return {
         'border-b': cellPos[0] < size - 1,
@@ -46,9 +53,9 @@ export default defineComponent({
     }
 
     return {
-      cellBorderClasses,
       gridColClass,
       gridRowClass,
+      cellBorderClasses,
     };
   },
 });

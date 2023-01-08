@@ -14,6 +14,11 @@ export enum Player {
 export type PlayerKey = keyof typeof Player;
 export const players: [PlayerKey, PlayerKey] = [Player.o, Player.x];
 
+export enum Phase {
+  prep = 'prep',
+  play = 'play',
+}
+
 /*
  * tally = {
  *  o: { col: { 1: 1, 2: 1 }, row: {}, dia: {} },
