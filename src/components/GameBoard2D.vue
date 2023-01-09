@@ -5,7 +5,6 @@
   template(v-for="(row, rowIdx) in board.cells")
     BoardCell(
       v-for="(cell, colIdx) in row"
-      :borderClasses="cellBorderClasses(cell.pos)"
       :cell="cell"
       :key="`${rowIdx}-${colIdx}`"
     )
@@ -43,19 +42,9 @@ export default defineComponent({
       return `grid-rows-${size}`;
     });
 
-    function cellBorderClasses(cellPos: [number, number]) {
-      const { size } = board.value as Board2D;
-
-      return {
-        'border-b': cellPos[0] < size - 1,
-        'border-r': cellPos[1] < size - 1,
-      };
-    }
-
     return {
       gridColClass,
       gridRowClass,
-      cellBorderClasses,
     };
   },
 });

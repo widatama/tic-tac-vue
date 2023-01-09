@@ -17,12 +17,6 @@ import type { Cell2D } from '@/modules/engine';
 export default defineComponent({
   name: 'BoardCell',
   props: {
-    borderClasses: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
     cell: {
       type: Object as () => Cell2D,
       required: true,
@@ -30,12 +24,17 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const { borderClasses, cell } = toRefs(props);
+    const { cell } = toRefs(props);
 
     const cellClass = computed(() => {
+      const borderClasses = {
+        'border-l': cell.value.pos[1] > 0,
+        'border-t': cell.value.pos[0] > 0,
+      };
+
       if (cell.value.value) {
         return {
-          ...borderClasses.value,
+          ...borderClasses,
           'text-11xl': cell.value.value === Player.o,
           'font-bold': cell.value.value === Player.o,
           'text-white': cell.value.value === Player.o,
@@ -44,7 +43,7 @@ export default defineComponent({
         };
       }
 
-      return borderClasses.value;
+      return borderClasses;
     });
 
     const handleClick = () => {
