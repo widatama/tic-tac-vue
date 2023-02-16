@@ -1,15 +1,16 @@
 <template lang="pug">
 section.relative.flex.h-full
-  .absolute.flex.justify-center.items-center.flex-col.w-full.h-full.bg-black.bg-opacity-70(
-    v-if="isPrep"
-  )
-    GameStatus.flex-grow-0.text-3xl.mb-16(v-if="isEndOfGame" :stat="stat")
-    button.mb-8(
-      v-for="size in boardSizes"
-      :class="btnClasses"
-      @click="handleClick(size)"
+  Transition(name="tr-scale")
+    .absolute.flex.justify-center.items-center.flex-col.w-full.h-full.bg-black.bg-opacity-70(
+      v-if="isPrep"
     )
-      | New {{ size }} by {{ size }}
+      GameStatus.flex-grow-0.text-3xl.mb-16(v-if="isEndOfGame" :stat="stat")
+      button.mb-8(
+        v-for="size in boardSizes"
+        :class="btnClasses"
+        @click="handleClick(size)"
+      )
+        | New {{ size }} by {{ size }}
   div.wrap.mx-auto.flex.justify-center.items-center.pb-5.pt-1.h-full
     GameBoard(:board="board")
 </template>

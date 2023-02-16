@@ -3,11 +3,17 @@
   :class="cellClass"
   @click="handleClick"
 )
-  | {{cellContent}}
+  div( :class="animationClass")
+    | {{cellContent}}
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, toRefs } from 'vue';
+import {
+  computed,
+  defineComponent,
+  ref,
+  toRefs,
+} from 'vue';
 import { useStore } from 'vuex';
 
 import { displayXO } from '@/modules/display';
@@ -25,6 +31,7 @@ export default defineComponent({
   setup(props) {
     const store = useStore();
     const { cell } = toRefs(props);
+    const animationClass = ref({} as Record<string, boolean>);
 
     const cellClass = computed(() => {
       const borderClasses = {
@@ -49,10 +56,17 @@ export default defineComponent({
     const handleClick = () => {
       if (cell.value.value === '') {
         store.dispatch('playerMoves2D', { cellPosition: cell.value.pos });
+        const animIdx = Math.floor(Math.random() * (1 - 0 + 1) + 0);
+        animationClass.value[`ani-${animIdx}`] = true;
+
+        setTimeout(() => {
+          animationClass.value = {};
+        }, 200);
       }
     };
 
     return {
+      animationClass,
       cellClass,
       cellContent: computed(() => displayXO(cell.value.value)),
       handleClick,
