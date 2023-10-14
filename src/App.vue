@@ -10,8 +10,8 @@ RouterView
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { RouterView } from 'vue-router';
-import { useStore } from 'vuex';
 
+import useMainStore from '@/stores/main';
 import GameStatus from '@/components/GameStatus.vue';
 
 export default defineComponent({
@@ -21,11 +21,11 @@ export default defineComponent({
     RouterView,
   },
   setup() {
-    const store = useStore();
-    const stat = computed(() => store.getters.getGameStat);
+    const mainStore = useMainStore();
 
     return {
-      stat,
+      mainStore,
+      stat: computed(() => mainStore.getGameStat),
     };
   },
 });

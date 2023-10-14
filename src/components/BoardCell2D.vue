@@ -14,11 +14,11 @@ import {
   ref,
   toRefs,
 } from 'vue';
-import { useStore } from 'vuex';
 
 import { displayXO } from '@/modules/display';
 import { Player } from '@/modules/engine';
 import type { Cell2D } from '@/modules/engine';
+import useMainStore from '@/stores/main';
 
 export default defineComponent({
   name: 'BoardCell',
@@ -29,7 +29,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const store = useStore();
+    const mainStore = useMainStore();
     const { cell } = toRefs(props);
     const animationClass = ref({} as Record<string, boolean>);
 
@@ -55,7 +55,7 @@ export default defineComponent({
 
     const handleClick = () => {
       if (cell.value.value === '') {
-        store.dispatch('playerMoves2D', { cellPosition: cell.value.pos });
+        mainStore.playerMoves2D({ cellPosition: cell.value.pos });
         const animIdx = Math.floor(Math.random() * (1 - 0 + 1) + 0);
         animationClass.value[`ani-${animIdx}`] = true;
 

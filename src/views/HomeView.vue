@@ -21,10 +21,10 @@ import {
   defineComponent,
   ref,
 } from 'vue';
-import { useStore } from 'vuex';
 
 import GameBoard from '@/components/GameBoard2D.vue';
 import GameStatus from '@/components/GameStatus.vue';
+import useMainStore from '@/stores/main';
 
 export default defineComponent({
   components: {
@@ -32,7 +32,7 @@ export default defineComponent({
     GameStatus,
   },
   setup() {
-    const store = useStore();
+    const mainStore = useMainStore();
 
     const btnClasses = ref([
       'bg-white',
@@ -50,24 +50,22 @@ export default defineComponent({
       'transition',
     ]);
 
-    const stat = computed(() => store.getters.getGameStat);
-
     const isEndOfGame = computed(() => {
-      const statLabel = stat.value.label.toLowerCase();
+      const statLabel = mainStore.getGameStat.label.toLowerCase();
       return ['wins', 'draw'].includes(statLabel);
     });
 
     const handleClick = (chosenBoardSize: number) => {
-      store.dispatch('newGame', chosenBoardSize);
+      mainStore.newGame(chosenBoardSize);
     };
 
     return {
       btnClasses,
-      board: computed(() => store.getters.getBoard),
-      boardSizes: computed(() => store.getters.getBoardSizes),
+      board: computed(() => mainStore.getBoard),
+      boardSizes: computed(() => mainStore.getBoardSizes),
       isEndOfGame,
-      isPrep: computed(() => store.getters.isPrep),
-      stat,
+      isPrep: computed(() => mainStore.isPrep),
+      stat: computed(() => mainStore.getGameStat),
       handleClick,
     };
   },

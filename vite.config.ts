@@ -1,3 +1,4 @@
+/* eslint-env node */
 /// <reference types="vitest"/>
 import { resolve } from 'path';
 import { fileURLToPath, URL } from 'node:url';

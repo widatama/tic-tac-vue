@@ -7,17 +7,22 @@ export type BoardSize = 3 | 4 | 5;
 export const boardSizes: BoardSize[] = [3, 4, 5];
 const DEFAULT_BOARD_SIZE: BoardSize = 3;
 
+/* eslint-disable no-unused-vars */
 export enum Player {
   o = 'o',
   x = 'x',
 }
+/* eslint-enable */
+
 export type PlayerKey = keyof typeof Player;
 export const players: [PlayerKey, PlayerKey] = [Player.o, Player.x];
 
+/* eslint-disable no-unused-vars */
 export enum Phase {
   prep = 'prep',
   play = 'play',
 }
+/* eslint-enable */
 
 /*
  * tally = {
