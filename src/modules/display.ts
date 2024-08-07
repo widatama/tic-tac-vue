@@ -19,7 +19,7 @@ export type GameStat = {
 };
 
 export function generateGameStat(
-  { winner, playerTurn }: { winner: string, playerTurn: string },
+  { winner, playerTurn }: { winner: string; playerTurn: string },
 ): GameStat {
   let label = 'turns';
   if (winner === 'draw') {

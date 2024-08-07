@@ -23,7 +23,7 @@ export default defineComponent({
   },
   props: {
     board: {
-      type: Object as () => Board2D | {},
+      type: Object as () => Board2D | object,
       default() {
         return {};
       },
