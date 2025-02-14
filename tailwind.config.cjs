@@ -2,9 +2,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,vue,ts}'],
-  safelist: [
-    { pattern: /grid-(cols|rows)-[3|4|5]/ },
-  ],
   theme: {
     colors: {
       black: '#333333',

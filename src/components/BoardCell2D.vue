@@ -1,10 +1,10 @@
 <template lang="pug">
-.border-gray.cursor-pointer.justify-center.items-center.flex.min-h-full.leading-3(
+.border-gray.cursor-pointer.justify-center.items-center.flex(
   :class="cellClass"
   @click="handleClick"
 )
-  div( :class="animationClass")
-    | {{cellContent}}
+  div.leading-0( :class="textClass")
+    div( :class="animationClass") {{cellContent}}
 </template>
 
 <script lang="ts">
@@ -34,14 +34,15 @@ export default defineComponent({
     const animationClass = ref({} as Record<string, boolean>);
 
     const cellClass = computed(() => {
-      const borderClasses = {
+      return {
         'border-l': cell.value.pos[1] > 0,
         'border-t': cell.value.pos[0] > 0,
       };
+    });
 
+    const textClass = computed(() => {
       if (cell.value.value) {
         return {
-          ...borderClasses,
           'text-11xl': cell.value.value === Player.o,
           'font-bold': cell.value.value === Player.o,
           'text-white': cell.value.value === Player.o,
@@ -50,7 +51,7 @@ export default defineComponent({
         };
       }
 
-      return borderClasses;
+      return {};
     });
 
     const handleClick = () => {
@@ -68,6 +69,7 @@ export default defineComponent({
     return {
       animationClass,
       cellClass,
+      textClass,
       cellContent: computed(() => displayXO(cell.value.value)),
       handleClick,
     };

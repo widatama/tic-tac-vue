@@ -1,11 +1,12 @@
 <template lang="pug">
 section.relative.flex.h-full
   Transition(name="tr-scale")
-    .absolute.flex.justify-center.items-center.flex-col.w-full.h-full.bg-black.bg-opacity-70(
+    .absolute.flex.justify-center.items-center.flex-col.w-full.h-full(
+      class="bg-black/70"
       v-if="isPrep"
     )
-      GameStatus.flex-grow-0.text-3xl.mb-16(v-if="isEndOfGame" :stat="stat")
-      button.mb-8(
+      GameStatus.grow-0.text-3xl.mb-16(v-if="isEndOfGame" :stat="stat")
+      button.mb-8.cursor-pointer(
         v-for="size in boardSizes"
         :class="btnClasses"
         @click="handleClick(size)"
@@ -39,7 +40,7 @@ export default defineComponent({
       'border-2',
       'border-white',
       'duration-500',
-      'flex-grow-0',
+      'grow-0',
       'hover:bg-black',
       'hover:text-white',
       'lowercase',
