@@ -1,10 +1,11 @@
 <template lang="pug">
-.border-gray.cursor-pointer.justify-center.items-center.flex(
+div(
+  class="border-gray cursor-pointer justify-center items-center flex"
   :class="cellClass"
   @click="handleClick"
 )
-  div.leading-0( :class="textClass")
-    div( :class="animationClass") {{cellContent}}
+  div(class="leading-0" :class="textClass")
+    div(:class="animationClass") {{cellContent}}
 </template>
 
 <script lang="ts">

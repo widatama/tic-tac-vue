@@ -1,5 +1,6 @@
 <template lang="pug">
-.w-full.grid.justify-items-stretch(
+div(
+  class="w-full grid justify-items-stretch"
   :class="[gridColClass, gridRowClass, 'h-full', 'md:h-full', 'lg:h-3/5']"
   )
   template(v-for="(row, rowIdx) in board.cells")

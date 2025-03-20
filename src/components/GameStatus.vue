@@ -1,7 +1,7 @@
 <template lang="pug">
-div.flex.items-center
+div(class="flex items-center")
   template(v-if="stat.player")
-    span.leading-3.mr-1.font-bold(:class="playerClass")
+    span(class="leading-3 mr-1 font-bold" :class="playerClass")
       | {{stat.playerDisplay}}
     span
       | {{stat.label}}

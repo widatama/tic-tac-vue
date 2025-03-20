@@ -1,18 +1,19 @@
 <template lang="pug">
-section.relative.flex.h-full
+section(class="relative flex h-full")
   Transition(name="tr-scale")
-    .absolute.flex.justify-center.items-center.flex-col.w-full.h-full(
-      class="bg-black/70"
+    div(
+      class="absolute flex justify-center items-center flex-col w-full h-full bg-black/70"
       v-if="isPrep"
     )
-      GameStatus.grow-0.text-3xl.mb-16(v-if="isEndOfGame" :stat="stat")
-      button.mb-8.cursor-pointer(
+      GameStatus(class="grow-0 text-3xl mb-16" v-if="isEndOfGame" :stat="stat")
+      button(
         v-for="size in boardSizes"
+        class="mb-8 cursor-pointer"
         :class="btnClasses"
         @click="handleClick(size)"
       )
         | New {{ size }} by {{ size }}
-  div.wrap.mx-auto.flex.justify-center.items-center.pb-5.pt-1.h-full
+  div(class="wrap mx-auto flex justify-center items-center pb-5 pt-1 h-full")
     GameBoard(:board="board")
 </template>
 

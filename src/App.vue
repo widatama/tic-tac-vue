@@ -1,9 +1,9 @@
 <template lang="pug">
-header.flex.justify-between.wrap.py-5.mx-auto
-  h1.text-xl.uppercase.tracking-widest
+header(class="flex justify-between wrap py-5 mx-auto")
+  h1(class="text-xl uppercase tracking-widest")
     | Tic Tac&nbsp;
-    span.text-green Vue
-  GameStatus.text-lg(:stat="stat")
+    span(class="text-green") Vue
+  GameStatus(class="text-lg" :stat="stat")
 RouterView
 </template>
 
