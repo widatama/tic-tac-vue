@@ -46,21 +46,19 @@ function checkWinCondition2D(board: Board2D): PlayerKey | '' {
   };
   let winner: Player | '' = '';
 
-  for (let rowCount = 0; rowCount < board.size; rowCount += 1) {
-    for (let colCount = 0; colCount < board.size; colCount += 1) {
-      const cell = board.cells[rowCount][colCount];
-
-      if (cell.value !== '') {
+  board.cells.forEach((row, rowCount) => {
+    row.forEach((cell, colCount) => {
+      if (cell && cell.value !== '') {
         // add row tally
-        if (tally[cell.value].row && tally[cell.value].row[rowCount] !== undefined) {
-          tally[cell.value].row[rowCount] += 1;
+        if (tally[cell.value].row[rowCount] !== undefined) {
+          tally[cell.value].row[rowCount] = tally[cell.value].row[rowCount] as number + 1;
         } else {
           tally[cell.value].row[rowCount] = 1;
         }
 
         // add column tally
         if (tally[cell.value].col[colCount] !== undefined) {
-          tally[cell.value].col[colCount] += 1;
+          tally[cell.value].col[colCount] = tally[cell.value].col[colCount] as number + 1;
         } else {
           tally[cell.value].col[colCount] = 1;
         }
@@ -68,7 +66,7 @@ function checkWinCondition2D(board: Board2D): PlayerKey | '' {
         // add first diagonal tally
         if (rowCount === colCount) {
           if (tally[cell.value].dia[0] !== undefined) {
-            tally[cell.value].dia[0] += 1;
+            tally[cell.value].dia[0] = tally[cell.value].dia[0] as number + 1;
           } else {
             tally[cell.value].dia[0] = 1;
           }
@@ -77,7 +75,7 @@ function checkWinCondition2D(board: Board2D): PlayerKey | '' {
         // add second diagonal tally
         if (rowCount + colCount === board.size - 1) {
           if (tally[cell.value].dia[1] !== undefined) {
-            tally[cell.value].dia[1] += 1;
+            tally[cell.value].dia[1] = tally[cell.value].dia[1] as number + 1;
           } else {
             tally[cell.value].dia[1] = 1;
           }
@@ -90,11 +88,11 @@ function checkWinCondition2D(board: Board2D): PlayerKey | '' {
 
         if (colWin || dia0Win || dia1Win || rowWin) {
           winner = cell.value;
-          break;
+          return;
         }
       }
-    }
-  }
+    });
+  });
 
   return winner;
 }
@@ -128,25 +126,23 @@ export function getWinner2D(
 export function getFirstTurn(inpPlayers: [string, string] = players): string {
   const rand = Math.random() * 10;
 
-  return inpPlayers[Math.round(rand) % 2];
+  return inpPlayers[Math.round(rand) % 2] as string;
 }
 
 export function generateBoard2D(
   inpBoardSize: BoardSize = DEFAULT_BOARD_SIZE,
   inpPlayers: [PlayerKey, PlayerKey] = players,
 ): Board2D {
-  const cells: Cell2D[][] = [];
   const boardSize = boardSizes.includes(inpBoardSize) ? inpBoardSize : DEFAULT_BOARD_SIZE;
 
-  for (let rowCount = 0; rowCount < boardSize; rowCount += 1) {
-    cells[rowCount] = [];
-    for (let colCount = 0; colCount < boardSize; colCount += 1) {
-      cells[rowCount][colCount] = {
-        pos: [rowCount, colCount],
+  const cells: Cell2D[][] = new Array(boardSize).fill([]).map((_, rowIdx) => {
+    return new Array(boardSize).fill([]).map((__, colIdx) => {
+      return {
+        pos: [rowIdx, colIdx],
         value: '',
       };
-    }
-  }
+    });
+  });
 
   return {
     cells,

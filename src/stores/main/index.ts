@@ -41,14 +41,12 @@ const useMainStore = defineStore('main', {
     },
     playerMoves2D(payload: { cellPosition: [number, number] }) {
       if (this.winner === '') {
-        const newCell = {
-          pos: payload.cellPosition,
-          value: this.playerTurn as Player,
-        };
         const [row, col] = payload.cellPosition;
 
         if (this.board?.cells) {
-          this.board.cells[row][col] = newCell;
+          if (this.board.cells[row] && this.board.cells[row][col]) {
+            this.board.cells[row][col].value = this.playerTurn as Player;
+          }
         }
 
         if (this.playerTurn === Player.o) {

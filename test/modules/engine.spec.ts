@@ -51,9 +51,15 @@ describe('Check Winner', () => {
     const winningBoard = generateBoard2D();
     const winner = 'o';
 
-    winningBoard.cells[0][0].value = winner as Player;
-    winningBoard.cells[0][1].value = winner as Player;
-    winningBoard.cells[0][2].value = winner as Player;
+    winningBoard.cells.forEach((row) => {
+      row.forEach((cell) => {
+        cell.value = winner as Player;
+      });
+    });
+
+    // winningBoard.cells[0][0].value = winner as Player;
+    // winningBoard.cells[0][1].value = winner as Player;
+    // winningBoard.cells[0][2].value = winner as Player;
 
     test('Returns a winner based on game rules', () => {
       expect(getWinner2D(winningBoard)).toBe(winner);
