@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* global node */
 module.exports = {
   plugins: {
     '@tailwindcss/postcss': {},
