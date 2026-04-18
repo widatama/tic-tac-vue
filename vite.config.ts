@@ -18,6 +18,9 @@ export default defineConfig({
     emptyOutDir: true,
     outDir,
     rollupOptions: {
+      output: {
+        comments: false,
+      },
       input: {
         main: resolve(rootDir, 'index.html'),
       },
@@ -66,8 +69,10 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  esbuild: {
-    legalComments: 'none',
+  oxc: {
+    minify: {
+      removeAnnotations: true,
+    },
   },
   root: rootDir,
   server: {
