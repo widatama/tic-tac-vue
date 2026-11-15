@@ -7,9 +7,9 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import vue from '@vitejs/plugin-vue';
 
-const outDir = resolve(__dirname, 'dist');
-const rootDir = resolve(__dirname, 'src');
-const publicDir = resolve(__dirname, 'public');
+const outDir = resolve(import.meta.dirname, 'dist');
+const rootDir = resolve(import.meta.dirname, 'src');
+const publicDir = resolve(import.meta.dirname, 'public');
 
 // https://vitejs.dev/config/
 export default defineConfig({
