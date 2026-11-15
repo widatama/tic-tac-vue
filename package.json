@@ -17,6 +17,11 @@
     "url": "git+https://github.com/widatama/tic-tac-vue.git"
   },
   "type": "module",
+  "overrides": {
+    "deepmerge": "^4.3.1",
+    "glob": "^14.0.2",
+    "minimatch": "^11.0.8"
+  },
   "dependencies": {
     "@vue/devtools-api": "^8.2.1",
     "pinia": "^4.1.0",
